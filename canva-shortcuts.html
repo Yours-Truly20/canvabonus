@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canva Keyboard Shortcuts — Cheat Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0A0A0F;
+    --surface: #111118;
+    --card: #16161F;
+    --card-hover: #1C1C28;
+    --border: rgba(255,255,255,0.07);
+    --border-bright: rgba(255,255,255,0.14);
+    --text: #F0EFF8;
+    --muted: #8884A0;
+    --dim: #4A4860;
+
+    --c1: #7B6EF6;
+    --c1-soft: rgba(123,110,246,0.12);
+    --c1-glow: rgba(123,110,246,0.25);
+    --c2: #F97066;
+    --c2-soft: rgba(249,112,102,0.12);
+    --c3: #34D399;
+    --c3-soft: rgba(52,211,153,0.12);
+    --c4: #FBBF24;
+    --c4-soft: rgba(251,191,36,0.12);
+    --c5: #60A5FA;
+    --c5-soft: rgba(96,165,250,0.12);
+    --c6: #F472B6;
+    --c6-soft: rgba(244,114,182,0.12);
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  .noise {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+
+  .grid-lines {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .page {
+    position: relative; z-index: 1;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 60px 32px 80px;
+  }
+
+  /* ── HERO HEADER ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 32px;
+    margin-bottom: 56px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid;
+  }
+  .badge-purple { color: var(--c1); border-color: rgba(123,110,246,0.4); background: var(--c1-soft); }
+  .badge-coral  { color: var(--c2); border-color: rgba(249,112,102,0.4); background: var(--c2-soft); }
+  .badge-green  { color: var(--c3); border-color: rgba(52,211,153,0.4);  background: var(--c3-soft); }
+  .badge-amber  { color: var(--c4); border-color: rgba(251,191,36,0.4);  background: var(--c4-soft); }
+  .badge-blue   { color: var(--c5); border-color: rgba(96,165,250,0.4);  background: var(--c5-soft); }
+  .badge-pink   { color: var(--c6); border-color: rgba(244,114,182,0.4); background: var(--c6-soft); }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+  }
+  .hero-title span { color: var(--c1); }
+
+  .hero-sub {
+    font-size: 16px; font-weight: 300;
+    color: var(--muted);
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+
+  .hero-stat {
+    text-align: right; flex-shrink: 0;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 72px; font-weight: 800; line-height: 1;
+    color: var(--c1);
+    letter-spacing: -0.04em;
+    text-shadow: 0 0 60px var(--c1-glow);
+  }
+  .stat-label {
+    font-size: 13px; color: var(--muted); font-weight: 300;
+    margin-top: 4px; letter-spacing: 0.02em;
+  }
+
+  /* ── PLATFORM ROW ── */
+  .platform-row {
+    display: flex; gap: 8px; margin-bottom: 48px; flex-wrap: wrap;
+  }
+  .platform-pill {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid var(--border-bright);
+    border-radius: 100px;
+    background: var(--surface);
+    font-size: 13px; color: var(--muted); font-weight: 400;
+  }
+  .platform-pill .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+  }
+  .dot-mac { background: #ef8f8f; }
+  .dot-win { background: #60A5FA; }
+  .dot-note { background: var(--c1); }
+
+  /* ── SECTIONS GRID ── */
+  .sections {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 900px) { .sections { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 580px) { .sections { grid-template-columns: 1fr; } }
+
+  .section-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: background 0.2s, border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .section-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    border-radius: 16px 16px 0 0;
+    opacity: 0.8;
+  }
+  .section-card:hover { background: var(--card-hover); border-color: var(--border-bright); }
+
+  .c-purple::before { background: var(--c1); }
+  .c-coral::before  { background: var(--c2); }
+  .c-green::before  { background: var(--c3); }
+  .c-amber::before  { background: var(--c4); }
+  .c-blue::before   { background: var(--c5); }
+  .c-pink::before   { background: var(--c6); }
+
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .section-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; flex-shrink: 0;
+  }
+  .si-purple { background: var(--c1-soft); }
+  .si-coral  { background: var(--c2-soft); }
+  .si-green  { background: var(--c3-soft); }
+  .si-amber  { background: var(--c4-soft); }
+  .si-blue   { background: var(--c5-soft); }
+  .si-pink   { background: var(--c6-soft); }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px; font-weight: 700; letter-spacing: 0.01em;
+  }
+
+  /* ── SHORTCUT ROWS ── */
+  .shortcut-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    gap: 12px;
+  }
+  .shortcut-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .shortcut-row:first-child { padding-top: 0; }
+
+  .shortcut-label {
+    font-size: 13px; font-weight: 300; color: #C4C0DA;
+    flex: 1; line-height: 1.4;
+  }
+
+  .keys {
+    display: flex; align-items: center; gap: 4px; flex-shrink: 0;
+  }
+
+  .key {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    min-width: 26px; height: 24px;
+    padding: 0 7px;
+    background: #0F0F18;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 2px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    color: #E0DCF5;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .key-sep {
+    font-size: 10px; color: var(--dim); font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px; font-weight: 700; color: var(--muted);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .footer-note { font-size: 12px; color: var(--dim); font-weight: 300; }
+</style>
+</head>
+<body>
+<div class="noise" aria-hidden="true"></div>
+<div class="grid-lines" aria-hidden="true"></div>
+
+<div class="page">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div>
+      <div class="hero-eyebrow">
+        <span class="badge badge-purple">Quick Reference</span>
+        <span class="badge badge-coral">v2024</span>
+      </div>
+      <h1 class="hero-title">Canva<br><span>Keyboard</span><br>Shortcuts</h1>
+      <p class="hero-sub">Every shortcut you need to design faster,<br>smarter, and without lifting a finger off the keys.</p>
+    </div>
+    <div class="hero-stat">
+      <div class="stat-num">50</div>
+      <div class="stat-label">shortcuts</div>
+    </div>
+  </header>
+
+  <!-- PLATFORM LEGEND -->
+  <div class="platform-row" role="note" aria-label="Platform key legend">
+    <div class="platform-pill"><span class="dot dot-mac"></span> Mac: use ⌘ Cmd</div>
+    <div class="platform-pill"><span class="dot dot-win"></span> Windows/Linux: use Ctrl</div>
+    <div class="platform-pill"><span class="dot dot-note"></span> ⌘ / Ctrl shown as Ctrl below</div>
+  </div>
+
+  <!-- SHORTCUTS GRID -->
+  <main class="sections">
+
+    <!-- 1. FILE & PROJECT -->
+    <div class="section-card c-purple">
+      <div class="section-header">
+        <div class="section-icon si-purple">📁</div>
+        <div>
+          <div class="section-title">File &amp; Project</div>
+          <div class="badge badge-purple" style="margin-top:4px">9 shortcuts</div>
+        </div>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">New design</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">N</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Open search</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">F</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Save design</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">S</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Undo last action</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">Z</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Redo last action</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">Y</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Copy design page</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">D</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Download design</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">Shift</span><span class="key-sep">+</span><span class="key">E</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Print design</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">P</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Keyboard shortcuts list</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">/</span></span>
+      </div>
+    </div>
+
+    <!-- 2. EDIT & SELECTION -->
+    <div class="section-card c-coral">
+      <div class="section-header">
+        <div class="section-icon si-coral">✂️</div>
+        <div>
+          <div class="section-title">Edit &amp; Selection</div>
+          <div class="badge badge-coral" style="margin-top:4px">9 shortcuts</div>
+        </div>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Copy element</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">C</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Paste element</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">V</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Cut element</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">X</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Duplicate element</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">D</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Select all elements</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">A</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Delete element</span>
+        <span class="keys"><span class="key">Delete</span><span class="key-sep">/</span><span class="key">⌫</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Add comment</span>
+        <span class="keys"><span class="key">C</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Lock/unlock element</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">Shift</span><span class="key-sep">+</span><span class="key">L</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Group elements</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">G</span></span>
+      </div>
+    </div>
+
+    <!-- 3. VIEW & ZOOM -->
+    <div class="section-card c-green">
+      <div class="section-header">
+        <div class="section-icon si-green">🔍</div>
+        <div>
+          <div class="section-title">View &amp; Zoom</div>
+          <div class="badge badge-green" style="margin-top:4px">8 shortcuts</div>
+        </div>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Zoom in</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">+</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Zoom out</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">−</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Fit page to screen</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">Shift</span><span class="key-sep">+</span><span class="key">H</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Zoom to 100%</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">0</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Toggle rulers</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">R</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Show/hide guides</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">;</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Full-screen present</span>
+        <span class="keys"><span class="key">F5</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Exit full screen</span>
+        <span class="keys"><span class="key">Esc</span></span>
+      </div>
+    </div>
+
+    <!-- 4. TEXT EDITING -->
+    <div class="section-card c-amber">
+      <div class="section-header">
+        <div class="section-icon si-amber">✍️</div>
+        <div>
+          <div class="section-title">Text Editing</div>
+          <div class="badge badge-amber" style="margin-top:4px">9 shortcuts</div>
+        </div>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Bold text</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">B</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Italic text</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">I</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Underline text</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">U</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Increase font size</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">Shift</span><span class="key-sep">+</span><span class="key">.</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Decrease font size</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">Shift</span><span class="key-sep">+</span><span class="key">,</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Align text left</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">Shift</span><span class="key-sep">+</span><span class="key">L</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Align text centre</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">Shift</span><span class="key-sep">+</span><span class="key">E</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Align text right</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">Shift</span><span class="key-sep">+</span><span class="key">R</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Add text element</span>
+        <span class="keys"><span class="key">T</span></span>
+      </div>
+    </div>
+
+    <!-- 5. ELEMENTS & LAYERS -->
+    <div class="section-card c-blue">
+      <div class="section-header">
+        <div class="section-icon si-blue">🎨</div>
+        <div>
+          <div class="section-title">Elements &amp; Layers</div>
+          <div class="badge badge-blue" style="margin-top:4px">8 shortcuts</div>
+        </div>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Bring forward</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">]</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Send backward</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">[</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Bring to front</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">Alt</span><span class="key-sep">+</span><span class="key">]</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Send to back</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">Alt</span><span class="key-sep">+</span><span class="key">[</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Ungroup elements</span>
+        <span class="keys"><span class="key">Ctrl</span><span class="key-sep">+</span><span class="key">Shift</span><span class="key-sep">+</span><span class="key">G</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Add image element</span>
+        <span class="keys"><span class="key">I</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Add rectangle</span>
+        <span class="keys"><span class="key">R</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Add circle</span>
+        <span class="keys"><span class="key">C</span></span>
+      </div>
+    </div>
+
+    <!-- 6. PRESENTATION MODE -->
+    <div class="section-card c-pink">
+      <div class="section-header">
+        <div class="section-icon si-pink">📽️</div>
+        <div>
+          <div class="section-title">Presentation Mode</div>
+          <div class="badge badge-pink" style="margin-top:4px">7 shortcuts</div>
+        </div>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Next slide</span>
+        <span class="keys"><span class="key">→</span><span class="key-sep">/</span><span class="key">Space</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Previous slide</span>
+        <span class="keys"><span class="key">←</span><span class="key-sep">/</span><span class="key">⌫</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Jump to first slide</span>
+        <span class="keys"><span class="key">Home</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Jump to last slide</span>
+        <span class="keys"><span class="key">End</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Open presenter notes</span>
+        <span class="keys"><span class="key">N</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Pause timer</span>
+        <span class="keys"><span class="key">Space</span></span>
+      </div>
+      <div class="shortcut-row">
+        <span class="shortcut-label">Exit presentation</span>
+        <span class="keys"><span class="key">Esc</span></span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span class="footer-brand">Canva · Keyboard Shortcuts · Cheat Sheet</span>
+    <span class="footer-note">Works on Web · Desktop · All modern browsers &nbsp;·&nbsp; Mac: replace Ctrl with ⌘ Cmd</span>
+  </footer>
+
+</div>
+</body>
+</html>
